@@ -1,0 +1,259 @@
+/* General Reset and Typography */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #FFFDE7, #F5F5F5);
+  color: #333333;
+  line-height: 1.8;
+  transition: background 0.3s ease-in-out;
+}
+
+/* Container */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  min-height: 100vh;
+  background: url('https://via.placeholder.com/1920x1080?text=Subtle+Texture') center/cover no-repeat;
+}
+
+/* Navigation */
+nav {
+  background: linear-gradient(to right, #FFC107, #FF9800);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 40px;
+  transition: all 0.3s ease-in-out;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+li a {
+  color: #333333;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 8px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+li a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #4CAF50;
+  left: 0;
+  bottom: -5px;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+li a:hover::after {
+  transform: scaleX(1);
+}
+
+li a:hover {
+  color: white;
+  background: #4CAF50;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.5);
+}
+
+/* Main Content */
+main {
+  width: 100%;
+  max-width: 1200px;
+}
+
+h1 {
+  font-size: 40px;
+  color: #4CAF50;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+  text-shadow: 2px 2px 10px rgba(76, 175, 80, 0.3);
+}
+
+h2 {
+  font-size: 30px;
+  color: #FFC107;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* Homepage Sections */
+.homepage section {
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 40px;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.homepage section:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
+}
+
+/* Section Backgrounds */
+.call-to-action {
+  background: linear-gradient(135deg, #FFE0B2, #FFCC80);
+}
+
+.specials {
+  background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+}
+
+.testimonials {
+  background: linear-gradient(135deg, #F5F5F5, #E0E0E0);
+}
+
+.chicago {
+  background: linear-gradient(135deg, #FFFDE7, #FFF9C4);
+}
+
+/* Image Styling */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  margin-top: 20px;
+}
+
+/* Booking Page */
+.booking-page {
+  background: linear-gradient(to bottom, #F5F5F5, #E0E0E0);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Booking Form */
+.booking-form {
+  display: grid;
+  gap: 25px;
+}
+
+label {
+  font-size: 18px;
+  color: #333333;
+  font-weight: 500;
+}
+
+input,
+select {
+  padding: 14px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  width: 100%;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #4CAF50;
+  outline: none;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+}
+
+/* Button Styling */
+button {
+  background: linear-gradient(to right, #4CAF50, #45A049);
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 6px 12px rgba(76, 175, 80, 0.3);
+}
+
+button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background: linear-gradient(to right, #45A049, #388E3C);
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(56, 142, 60, 0.4);
+}
+
+/* Confirmed Booking */
+.confirmed-booking {
+  background: linear-gradient(to bottom, #E8F5E9, #C8E6C9);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Error Message */
+.error {
+  color: #D32F2F;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  nav {
+    padding: 15px;
+  }
+
+  ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  .booking-page,
+  .confirmed-booking {
+    padding: 20px;
+  }
+
+  button {
+    padding: 12px 18px;
+  }
+}
