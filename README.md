@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +69,19 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+=======
+# 🍋 Little Lemon Restaurant Web App
+
+Welcome to the **Little Lemon Restaurant** web application! This project is a modern, responsive website built using **React** to allow users to view the menu, read testimonials, and book reservations.
+
+---
+
+## 🚀 Project Overview
+
+- Built with **React.js**
+- Styled using **CSS/Styled Components**
+- Navigation handled with **React Router**
+- API integration for booking and customer data (if applicable)
+
+---
+>>>>>>> 66e3ba1d21a208646c06c200c79a89a18324f892
