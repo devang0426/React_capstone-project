@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../App.css';
 
 function BookingForm({ availableTimes, dispatch, submitForm }) {
@@ -6,33 +7,58 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
     date: '',
     time: '',
     guests: 1,
-    occasion: 'Birthday',
+    occasion: '',
+    name: '',
+    email: '',
+    specialRequests: ''
   });
+  
+  const [formErrors, setFormErrors] = useState({});
+  const navigate = useNavigate();
 
-  const [errors, setErrors] = useState({});
-
-  const handleChange = (e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+    
+    // Clear error when user types
+    if (formErrors[name]) {
+      setFormErrors({
+        ...formErrors,
+        [name]: ''
+      });
+    }
+    
+    // Update available times when date changes
     if (name === 'date') {
       dispatch({ type: 'UPDATE_TIMES', date: value });
     }
+  };
 
-    const newErrors = { ...errors };
-    if (name === 'date' && !value) newErrors.date = 'Date is required';
-    else if (name === 'date') delete newErrors.date;
-    if (name === 'time' && !value) newErrors.time = 'Time is required';
-    else if (name === 'time') delete newErrors.time;
-    if (name === 'guests' && (value < 1 || value > 10)) newErrors.guests = 'Guests must be 1-10';
-    else if (name === 'guests') delete newErrors.guests;
-    setErrors(newErrors);
+  const validateForm = () => {
+    const errors = {};
+    
+    if (!formData.date) errors.date = 'Please select a date';
+    if (!formData.time) errors.time = 'Please select a time';
+    if (formData.guests < 1) errors.guests = 'At least 1 guest is required';
+    if (!formData.name) errors.name = 'Please enter your name';
+    if (!formData.email) errors.email = 'Please enter your email';
+    else if (!/\S+@\S+\.\S+/.test(formData.email)) errors.email = 'Please enter a valid email';
+    
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (Object.keys(errors).length === 0 && formData.date && formData.time) {
-      submitForm(formData);
+    
+    if (validateForm()) {
+      const success = submitForm(formData);
+      if (success) {
+        navigate('/confirmed');
+      }
     }
   };
 
@@ -44,61 +70,57 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         id="res-date"
         name="date"
         value={formData.date}
-        onChange={handleChange}
+        onChange={handleInputChange}
         required
         aria-label="Choose reservation date"
       />
-      {errors.date && <span className="error">{errors.date}</span>}
+      {formErrors.date && <p className="error">{formErrors.date}</p>}
 
       <label htmlFor="res-time">Choose Time</label>
       <select
         id="res-time"
         name="time"
         value={formData.time}
-        onChange={handleChange}
+        onChange={handleInputChange}
         required
         aria-label="Choose reservation time"
       >
         <option value="">Select a time</option>
-        {availableTimes.map((time) => (
+        {availableTimes.map(time => (
           <option key={time} value={time}>{time}</option>
         ))}
       </select>
-      {errors.time && <span className="error">{errors.time}</span>}
+      {formErrors.time && <p className="error">{formErrors.time}</p>}
 
       <label htmlFor="guests">Number of Guests</label>
       <input
         type="number"
         id="guests"
         name="guests"
-        value={formData.guests}
-        onChange={handleChange}
         min="1"
         max="10"
+        value={formData.guests}
+        onChange={handleInputChange}
         required
         aria-label="Number of guests"
       />
-      {errors.guests && <span className="error">{errors.guests}</span>}
+      {formErrors.guests && <p className="error">{formErrors.guests}</p>}
 
       <label htmlFor="occasion">Occasion</label>
       <select
         id="occasion"
         name="occasion"
         value={formData.occasion}
-        onChange={handleChange}
-        aria-label="Occasion for reservation"
+        onChange={handleInputChange}
+        aria-label="Occasion"
       >
         <option value="Birthday">Birthday</option>
         <option value="Anniversary">Anniversary</option>
+        <option value="Business">Business</option>
+        <option value="Other">Other</option>
       </select>
 
-      <button
-        type="submit"
-        disabled={!formData.date || !formData.time || formData.guests < 1}
-        aria-label="Submit reservation"
-      >
-        Submit Reservation
-      </button>
+      <button type="submit" aria-label="Make your reservation">Reserve a Table</button>
     </form>
   );
 }
